@@ -1,5 +1,5 @@
 import React from 'react'
-import TopicPills from "./TopicPills";
+import TopicPills from "../components/TopicPills";
 
 export default class LessonTabs extends React.Component
 {
@@ -9,8 +9,6 @@ export default class LessonTabs extends React.Component
                 <h3>Lesson Tabs</h3>
                 <ul className="nav nav-tabs">
                     <li className="nav-item"><a className="nav-link active"
-                                                href="#"><TopicPills/></a></li>
-                    <li className="nav-item"><a className="nav-link"
                                                 href="#"><TopicPills/></a></li>
                 </ul>
             </div>
