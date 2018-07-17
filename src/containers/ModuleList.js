@@ -70,6 +70,7 @@ export default class ModuleList extends React.Component {
     createModule() {
         this.moduleService.createModule(this.state.courseId, this.state.module)
             .then(() => {
+                this.refs.newModule.value = '';
                 this.findAllModulesForCourse
                 (this.state.courseId);
             })
@@ -84,7 +85,7 @@ export default class ModuleList extends React.Component {
 
                     <input  className="form-control"
                     onChange={this.titleChanged}
-                            placeholder="title"></input>
+                            placeholder="title" ref={"newModule"}></input>
 
                     <button onClick={this.createModule} className="btn btn-primary btn-block">
                         <i className="fa fa-plus"></i>
