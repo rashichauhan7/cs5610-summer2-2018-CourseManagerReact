@@ -58,11 +58,12 @@ class CourseList extends React.Component {
 
             <div className="container-fluid">
             <h2>Course List</h2>
-        <table className="table">
-            <thead><tr><th>Courses</th></tr>
+            <table className="table">
+                <thead>
+                <tr><th>Courses</th></tr>
 
-            <tr>
-                <th><input onChange={this.titleChanged} className="form-control" id="titleFld"
+                <tr>
+                    <th><input onChange={this.titleChanged} className="form-control" id="titleFld"
                            placeholder="cs101"/></th>
                 <th><button onClick={this.createCourse} className="btn btn-primary">Add</button></th>
             </tr>
