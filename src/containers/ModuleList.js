@@ -9,7 +9,7 @@ export default class ModuleList extends React.Component {
                 courseId: '',
                 module: { title: '', id:''},
                 modules: [],
-
+                moduleId: ''
             };
             this.setCourseId = this.setCourseId.bind(this);
             this.titleChanged = this.titleChanged.bind(this);
@@ -17,6 +17,7 @@ export default class ModuleList extends React.Component {
             this.moduleService = ModuleService.instance;
             this.deleteModule = this.deleteModule.bind(this);
             this.updateModule = this.updateModule.bind(this);
+            this.editModule = this.editModule.bind(this);
             //this.findModuleById = this.findModuleById.bind(this);
         }
 
@@ -26,11 +27,26 @@ export default class ModuleList extends React.Component {
             .then(this.findAllModulesForCourse(this.state.courseId));
     }
 
-    updateModule(moduleId)
+    updateModule()
     {
+        this.moduleService.updateModule(this.state.moduleId, this.refs.newModule.value)
+            .then(() => {
+                this.refs.newModule.value = '';
+                this.findAllModulesForCourse(this.state.courseId);
+            })
 
     }
 
+    editModule(moduleId)
+    {
+        this.setState({moduleId,moduleId});
+        this.refs.create.style.display = 'none';
+        this.refs.update.style.display = 'block';
+        this.moduleService.findModuleById(moduleId)
+            .then((module) => {
+                this.refs.newModule.value = module.title;
+            })
+    }
     componentDidMount() {
         this.setCourseId(this.props.courseId);
     }
@@ -57,7 +73,8 @@ export default class ModuleList extends React.Component {
     renderListOfModules()
         {
             let modules = this.state.modules.map((module) =>  {
-                return <ModuleListItem courseId = {this.state.courseId} moduleId={module.id} key = {module.id} title = {module.title} deleteMod={this.deleteModule} updateMod={this.updateModule}/>
+                return <ModuleListItem courseId = {this.state.courseId} moduleId={module.id} key = {module.id}
+                                       title = {module.title} deleteMod={this.deleteModule} editMod={this.editModule}/>
             });
             return modules;
         }
@@ -85,12 +102,14 @@ export default class ModuleList extends React.Component {
 
                     <input style={{marginTop: 10}} className="form-control"
                     onChange={this.titleChanged}
-                            placeholder="title" ref={"newModule"}></input>
+                            placeholder="title" ref="newModule"></input>
 
-                    <button style={{backgroundColor: 'black'}}  onClick={this.createModule} className="btn btn-block">
+                    <button style={{backgroundColor: 'black'}}  onClick={this.createModule} className="btn btn-block"  ref = 'create'>
                         <i style={{color: 'grey'}} className="fa fa-plus"></i>
                     </button>
-
+                    <button style={{backgroundColor: 'black', display: 'none'}}  onClick={this.updateModule} className="btn btn-block"  ref = 'update'>
+                        <i style={{color: 'grey'}} className="fa fa fa-check"></i>
+                    </button>
                     <ul className="list-group">
                     {this.renderListOfModules()}
                     </ul>

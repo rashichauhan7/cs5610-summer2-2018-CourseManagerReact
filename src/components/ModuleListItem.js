@@ -43,7 +43,7 @@ export default class ModuleListItem extends React.Component{
                     <button className="btn" style={{marginRight: 5}} type="button" onClick={() => {this.props.deleteMod(this.props.moduleId)}} id="remove">
                         <i className="fa fa-trash"></i>
                     </button>
-                    <button className="btn" type="button" onClick={() => {this.props.updateMod(this.props.moduleId)}} id="edit">
+                    <button className="btn" type="button" onClick={() => {this.props.editMod(this.props.moduleId)}} id="edit">
                         <i className="fa fa-pencil"></i>
                     </button>
                 </span>

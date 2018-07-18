@@ -48,6 +48,29 @@ export default class ModuleService {
 
     }
 
+    findModuleById(moduleId)
+    {
+        return fetch(MODULE_API_URL_ACTIONS.replace('MID', moduleId))
+            .then(function (response){
+                return response.json();
+            });
 
+    }
+
+    updateModule(moduleId, title)
+    {
+        const user = { "id": moduleId, "title" : title}
+        return fetch(MODULE_API_URL_ACTIONS.replace('MID', moduleId),
+            {
+                method: 'put',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then(function (response){
+                return response;
+            });
+    }
 
 }
