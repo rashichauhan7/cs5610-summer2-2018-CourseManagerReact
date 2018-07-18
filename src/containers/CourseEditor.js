@@ -29,9 +29,9 @@ export default class CourseEditor
 
     render() {
         return (
-            <div className="col-4">
+            <div className="col-4" style={{backgroundColor: 'grey' , paddingBottom : 4, paddingTop : 4, borderRadius: 3}}>
             <div className="container-fluid">
-                <h3>Course {this.state.courseId}</h3>
+
                 <ModuleList courseId={this.state.courseId}/>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom"
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 export default class LessonItem extends React.Component
 {
 
@@ -41,9 +43,9 @@ export default class LessonItem extends React.Component
     render()
     {
         return (
-            <li className="nav-link active" >
+            <li className="nav-link"  >
                    <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`}
-                                        href="#" style ={{marginRight: 5}}>  {this.props.title}
+                                        href="#" style ={{marginRight: 5,color : 'black'}}>  {this.props.title}
                 </Link>
                 <span  className="float-right">
                 <button className="btn" type="button" id="remove" onClick={() => {this.props.deleteLesson(this.props.lessonId)}}>

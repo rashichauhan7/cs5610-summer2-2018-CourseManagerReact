@@ -83,12 +83,12 @@ export default class ModuleList extends React.Component {
             return (
                 <div className="container-fluid">
 
-                    <input  className="form-control"
+                    <input style={{marginTop: 10}} className="form-control"
                     onChange={this.titleChanged}
                             placeholder="title" ref={"newModule"}></input>
 
-                    <button onClick={this.createModule} className="btn btn-primary btn-block">
-                        <i className="fa fa-plus"></i>
+                    <button style={{backgroundColor: 'black'}}  onClick={this.createModule} className="btn btn-block">
+                        <i style={{color: 'grey'}} className="fa fa-plus"></i>
                     </button>
 
                     <ul className="list-group">

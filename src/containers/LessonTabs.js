@@ -83,14 +83,15 @@ export default class LessonTabs extends React.Component
     render () {
         return (
             <div>
-                <ul className="nav nav-tabs container-fluid">
+                <ul style={{backgroundColor: 'white' , borderRadius: 3}}className="nav nav-tabs container-fluid" >
                     {this.renderLessons()}
-                    <li className="nav-link active">
+                    <li style={{marginTop: 6, marginRight: 4}}>
 
                             <input className="col-xs-2" style={{borderRadius : 5, borderColor : 'white'}}
                                placeholder="Lesson" onChange={this.titleChanged} ref = "newlesson">
                             </input>
-
+                    </li>
+                    <li  style={{marginTop: 6}}>
                         <span  className="float-right">
                             <button className="btn" type="button" id="create" onClick={this.createLesson}>
                                 <i className="fa-1x fa fa-plus"></i>

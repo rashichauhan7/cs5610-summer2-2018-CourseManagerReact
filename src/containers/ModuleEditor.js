@@ -37,8 +37,8 @@ export default class ModuleEditor extends React.Component {
     render() {
         return (
 
-              <div>
-                    <h3>Module {this.state.moduleId}</h3>
+              <div  style={{backgroundColor: 'grey' , paddingTop : 4, borderRadius: 5 , borderColor: 'white'}}>
+
                     <LessonTabs courseId={this.state.courseId} moduleId={this.state.moduleId}/>
                 </div>
         );

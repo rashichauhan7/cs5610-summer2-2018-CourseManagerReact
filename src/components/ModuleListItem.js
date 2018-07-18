@@ -1,6 +1,5 @@
 import React from "react";
-import ModuleEditor from "../containers/ModuleEditor";
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export default class ModuleListItem extends React.Component{
     constructor(props) {
@@ -33,10 +32,10 @@ export default class ModuleListItem extends React.Component{
 
     render() {
         return (
-            <li className="list-group-item" style ={{width : 400}}>
+            <li className="list-group-item" style ={{width : 423}}>
 
 
-                <Link  to= {`/course/${this.props.courseId}/module/${this.props.moduleId}`}>
+                <Link  to= {`/course/${this.props.courseId}/module/${this.props.moduleId}`}  style ={{marginRight: 5,color : 'black'}}>
                 {this.props.title}
                 </Link>
 

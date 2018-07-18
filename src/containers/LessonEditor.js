@@ -1,7 +1,6 @@
 import React from 'react'
 
-import LessonTabs from './LessonTabs'
-import TopicPills from "../components/TopicPills";
+import TopicList from "./TopicList";
 
 export default class LessonEditor extends React.Component {
     constructor(props)
@@ -49,9 +48,9 @@ export default class LessonEditor extends React.Component {
 
     render() {
         return (
-            <div className="col-4">
-                <h3>Lesson {this.state.lessonId}</h3>
-                <TopicPills courseId={this.state.courseId} moduleId={this.state.moduleId} lessonId={this.state.lessonId}/>
+            <div style={{backgroundColor: 'grey' ,paddingBottom : 230, paddingTop : 4, borderRadius: 3}}>
+
+                <TopicList courseId={this.state.courseId} moduleId={this.state.moduleId} lessonId={this.state.lessonId}/>
             </div>
         );
     }
