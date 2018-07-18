@@ -55,6 +55,9 @@ export default class TopicPills
                 <button className="btn" type="button" id="remove" onClick={() => {this.props.deleteTopic(this.props.topicId)}}>
                     <i className="fa-1x fa fa-times"></i>
                 </button>
+                <button className="btn" type="button" onClick={() => {this.props.editTopic(this.props.topicId)}} id="edit">
+                        <i className="fa fa-pencil"></i>
+                    </button>
                 </span>
             </li>
         </ul>

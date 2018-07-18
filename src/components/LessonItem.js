@@ -51,6 +51,9 @@ export default class LessonItem extends React.Component
                 <button className="btn" type="button" id="remove" onClick={() => {this.props.deleteLesson(this.props.lessonId)}}>
                     <i className="fa-1x fa fa-times"></i>
                 </button>
+                    <button className="btn" type="button" onClick={() => {this.props.editLesson(this.props.lessonId)}} id="edit">
+                        <i className="fa fa-pencil"></i>
+                    </button>
                 </span>
             </li>
                 );

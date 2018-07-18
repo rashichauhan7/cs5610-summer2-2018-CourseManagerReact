@@ -1,6 +1,6 @@
 import React from "react";
 import ModuleListItem from '../components/ModuleListItem'
-import ModuleService from '../services/ModuleServices';
+import ModuleService from '../services/ModuleServiceClient';
 export default class ModuleList extends React.Component {
 
         constructor(props){
@@ -29,6 +29,8 @@ export default class ModuleList extends React.Component {
 
     updateModule()
     {
+        this.refs.update.style.display = 'none';
+        this.refs.create.style.display = 'inline-block';
         this.moduleService.updateModule(this.state.moduleId, this.refs.newModule.value)
             .then(() => {
                 this.refs.newModule.value = '';
@@ -41,7 +43,7 @@ export default class ModuleList extends React.Component {
     {
         this.setState({moduleId,moduleId});
         this.refs.create.style.display = 'none';
-        this.refs.update.style.display = 'block';
+        this.refs.update.style.display = 'inline-block';
         this.moduleService.findModuleById(moduleId)
             .then((module) => {
                 this.refs.newModule.value = module.title;

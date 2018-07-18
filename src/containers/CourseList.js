@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseRow from "../components/CourseRow";
 import CourseCard from "../components/CourseCard"
-import CourseService from "../services/CourseServices";
+import CourseService from "../services/CourseServiceClient";
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 class CourseList extends React.Component {
@@ -71,10 +71,10 @@ class CourseList extends React.Component {
 
         var rows = this.state.courses.map((course) => {
             if(this.state.view == "grid")
-                return <CourseCard key = {course.id} course={course} delete={this.deleteCourse}/>
+                return <CourseCard key = {course.id} course={course} delete={this.deleteCourse} findAllCourses={this.findAllCourses}/>
 
             else
-                return <CourseRow key = {course.id} course={course} delete={this.deleteCourse}/>
+                return <CourseRow key = {course.id} course={course} delete={this.deleteCourse} findAllCourses={this.findAllCourses}/>
         });
         if(this.state.view == "grid")
             rows = <div align="center" className="row">{rows}</div>
@@ -108,7 +108,7 @@ class CourseList extends React.Component {
                  <tr>
                     <th><input onChange={this.titleChanged} className="form-control" id="titleFld"
                            placeholder="cs101" ref="newCourse"/></th>
-                <th><button onClick={this.createCourse} className="btn btn-primary">Add</button></th>
+                <th><button onClick={this.createCourse} className="btn btn-primary fa fa-plus"></button></th>
             </tr>
                  <tr>
                      <th>Title</th>

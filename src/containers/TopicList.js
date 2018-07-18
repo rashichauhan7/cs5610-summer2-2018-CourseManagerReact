@@ -1,6 +1,6 @@
 import React from 'react'
 import TopicPills from "../components/TopicPills";
-import TopicService from "../services/TopicServices";
+import TopicService from "../services/TopicServiceClient";
 
 export default class TopicList extends React.Component
 {
@@ -21,6 +21,9 @@ export default class TopicList extends React.Component
         this.findAllTopics = this.findAllTopics.bind(this);
         this.setTopics = this.setTopics.bind(this);
         this.deleteTopic = this.deleteTopic.bind(this);
+        this.updateTopic = this.updateTopic.bind(this);
+        this.editTopic = this.editTopic.bind(this);
+
     };
 
 
@@ -80,15 +83,40 @@ export default class TopicList extends React.Component
         this.topicService.deleteTopic(topicId)
             .then(this.findAllTopics(this.state.courseId, this.state.moduleId, this.state.lessonId));
     }
+
+    updateTopic()
+    {
+        this.refs.update.style.display = 'none';
+        this.refs.create.style.display = 'inline-block';
+        this.topicService.updateTopic(this.state.topicId, this.refs.newTopic.value)
+            .then(() => {
+                this.refs.newTopic.value = '';
+                this.findAllTopics(this.state.courseId, this.state.moduleId, this.state.lessonId);
+            })
+
+    }
+
+    editTopic(topicId)
+    {
+        this.setState({topicId,topicId});
+        this.refs.create.style.display = 'none';
+        this.refs.update.style.display = 'inline-block';
+        this.topicService.findTopicById(topicId)
+            .then((topic) => {
+                this.refs.newTopic.value = topic.title;
+            })
+    }
+
     renderTopics()
     {
         let topics = this.state.topics.map((topic) =>  {
                 return <TopicPills  key = {topic.id} title = {topic.title} courseId = { this.state.courseId} moduleId = {this.state.moduleId} lessonId = {this.state.lessonId} topicId = {topic.id}
-                                    deleteTopic = {this.deleteTopic}/>
+                                    deleteTopic = {this.deleteTopic} editTopic = {this.editTopic}/>
             }
         );
         return topics;
     }
+
 
     render () {
         return (
@@ -103,9 +131,12 @@ export default class TopicList extends React.Component
                     </li>
                     <li  style={{marginTop: 6}}>
                         <span  className="float-right">
-                            <button className="btn" type="button" id="create" onClick={this.createTopic}>
+                            <button className="btn" type="button" ref="create" onClick={this.createTopic}>
                                 <i className="fa-1x fa fa-plus"></i>
                             </button>
+                            <button style={{display: 'none'}}  onClick={this.updateTopic} className="btn btn-block"  ref = 'update'>
+                        <i className="fa fa fa-check"></i>
+                    </button>
                         </span>
 
                     </li>

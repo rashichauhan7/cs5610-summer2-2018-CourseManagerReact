@@ -1,4 +1,4 @@
-
+const MODULE_URL = 'http://localhost:8080/api/module';
 const MODULE_API_URL =
     'http://localhost:8080/api/course/CID/module';
 const MODULE_API_URL_ACTIONS = "http://localhost:8080/api/module/MID" ;
@@ -14,7 +14,12 @@ export default class ModuleService {
             this[_singleton] = new ModuleService(_singleton);
         return this[_singleton]
     }
-
+    findAllModules() {
+        return fetch(MODULE_URL)
+            .then(function(response){
+                return response.json();
+            });
+    }
 
     createModule(courseId, module) {
         return fetch(MODULE_API_URL.replace('CID', courseId),
@@ -59,14 +64,14 @@ export default class ModuleService {
 
     updateModule(moduleId, title)
     {
-        const user = { "id": moduleId, "title" : title}
+        const module = { "id": moduleId, "title" : title}
         return fetch(MODULE_API_URL_ACTIONS.replace('MID', moduleId),
             {
                 method: 'put',
                 headers : {
                     'Content-Type' : 'application/json'
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify(module)
             })
             .then(function (response){
                 return response;
