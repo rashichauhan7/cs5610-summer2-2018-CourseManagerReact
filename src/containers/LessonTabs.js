@@ -88,7 +88,7 @@ export default class LessonTabs extends React.Component
 
     editLesson(lessonId)
     {
-        this.setState({lessonId,lessonId});
+        this.setState({lessonId:lessonId});
         this.refs.create.style.display = 'none';
         this.refs.update.style.display = 'inline-block';
         this.lessonService.findLessonById(lessonId)
