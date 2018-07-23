@@ -1,0 +1,19 @@
+.topiccontainer
+{
+  margin-top: 30px;
+}
+.newtopic
+{
+    border-radius : 5px;
+    border-color : white;
+}
+
+.btns
+{
+    margin-top: 6px;
+}
+
+.update
+{
+    display: none;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "../css/Module.css"
 import LessonTabs from './LessonTabs'
 
 export default class ModuleEditor extends React.Component {
@@ -37,7 +37,7 @@ export default class ModuleEditor extends React.Component {
     render() {
         return (
 
-              <div  style={{backgroundColor: 'grey' , paddingTop : 4, borderRadius: 5 , borderColor: 'white'}}>
+              <div  className="editor">
 
                     <LessonTabs courseId={this.state.courseId} moduleId={this.state.moduleId}/>
                 </div>

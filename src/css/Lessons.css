@@ -1,0 +1,43 @@
+
+.lessoncontainer
+{
+    margin-top: 10px;
+}
+
+.nav-tabs
+{
+    background-color: white;
+    border-radius: 3px;
+    height: 100px;
+    overflow-x: auto;
+}
+
+.lessoninput
+{
+    margin-top: 6px;
+    margin-right: 4px;
+}
+
+.newlesson
+{
+    border-radius : 5px;
+    border-color : white;
+}
+
+.btns
+{
+    margin-top: 6px;
+}
+
+.update
+{
+    display: none;
+}
+
+.editor
+{
+    background-color: grey;
+    padding-top : 4px;
+    border-radius: 5px;
+    padding-bottom : 20px;
+}

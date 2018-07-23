@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 import CourseService from "../services/CourseServiceClient";
-
+import '../css/Courses.css'
 export default class CourseCard extends React.Component
 {
     constructor(props) {
@@ -50,14 +50,14 @@ export default class CourseCard extends React.Component
 
     render() {
         return (
-            <div className="card col-sm-2" style={{margin : 4}}>
+            <div className="card col-sm-2" >
                 <div className="card-body ">
 
                 <h5 className="card-header">
-                    <Link to= {`/course/${this.props.course.id}`} style ={{marginRight: 5,color : 'black'}} >
+                    <Link to= {`/course/${this.props.course.id}`} className ="courseLink" >
                     {this.props.course.title}
                  </Link>
-                    <input type="text" ref = "newCourse" style={{display: 'none'}}></input></h5>
+                    <input type="text" ref = "newCourse" className="newcourse" style={{display: 'none'}}></input></h5>
                     <p className="card-text">{this.getDate()}</p>
                     <a href="#"><button className="btn btn-danger"
                                                             onClick={() => {this.props.delete(this.props.course.id)}}>

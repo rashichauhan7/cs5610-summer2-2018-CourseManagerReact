@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-
+import "../css/Module.css"
 export default class ModuleListItem extends React.Component{
     constructor(props) {
         super(props);
@@ -44,18 +44,18 @@ export default class ModuleListItem extends React.Component{
 
     render() {
         return (
-            <li className="list-group-item" style ={{width : 423}}>
+            <li className="list-group-item moduleitems" >
 
 
-                <Link onClick = {this.highlight} to= {`/course/${this.props.courseId}/module/${this.props.moduleId}`}  style ={{marginRight: 5,color : 'black'}}>
+                <Link onClick = {this.highlight} to= {`/course/${this.props.courseId}/module/${this.props.moduleId}`} className="modulename">
                 {this.props.title}
                 </Link>
 
                 <span  className="float-right">
-                    <button className="btn" style={{marginRight: 5}} type="button" onClick={() => {this.props.deleteMod(this.props.moduleId)}} id="remove">
+                    <button className="btn delete" type="button" onClick={() => {this.props.deleteMod(this.props.moduleId)}} id="remove">
                         <i className="fa fa-trash"></i>
                     </button>
-                    <button className="btn" type="button" onClick={() => {this.props.editMod(this.props.moduleId)}} id="edit">
+                    <button className="btn edit" type="button" onClick={() => {this.props.editMod(this.props.moduleId)}} id="edit">
                         <i className="fa fa-pencil"></i>
                     </button>
                 </span>

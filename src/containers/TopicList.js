@@ -1,7 +1,7 @@
 import React from 'react'
 import TopicPills from "../components/TopicPills";
 import TopicService from "../services/TopicServiceClient";
-
+import "../css/Topics.css"
 export default class TopicList extends React.Component
 {
 
@@ -126,21 +126,21 @@ export default class TopicList extends React.Component
 
     render () {
         return (
-            <div  style={{marginTop: 30}}>
+            <div className="topiccontainer">
                 <ul className="nav container-fluid">
                     {this.renderTopics()}
                     <li className="nav-link ">
 
-                        <input className="col-xs-2" style={{borderRadius : 5, borderColor : 'white'}}
+                        <input className="col-xs-2 newtopic"
                                placeholder="Topic" onChange={this.titleChanged} ref = "newTopic">
                         </input>
                     </li>
-                    <li  style={{marginTop: 6}}>
+                    <li className="btns">
                         <span  className="float-right">
                             <button className="btn" type="button" ref="create" onClick={this.createTopic}>
                                 <i className="fa-1x fa fa-plus"></i>
                             </button>
-                            <button style={{display: 'none'}}  onClick={this.updateTopic} className="btn btn-block"  ref = 'update'>
+                            <button onClick={this.updateTopic} className="btn btn-block update"  ref = 'update'>
                         <i className="fa fa fa-check"></i>
                     </button>
                         </span>

@@ -1,0 +1,47 @@
+.form-control
+{
+ margin-bottom : 5px;
+}
+.listview
+{
+    display : none;
+}
+
+.courseLink
+{
+    margin-right: 5px;
+    color : black;
+}
+.coursename
+{
+    display: none;
+}
+.update
+{
+    display: none;
+}
+.card
+{
+    margin : 4px;
+    align-items: center;
+}
+
+.card-header
+{
+    margin-right: 5px;
+    color : black;
+    width: 150px;
+}
+
+.newcourse
+{
+    display: none;
+}
+
+.editor
+{
+    background-color: grey;
+    padding-top : 4px;
+    border-radius: 3px;
+    padding-bottom : 4px;
+}

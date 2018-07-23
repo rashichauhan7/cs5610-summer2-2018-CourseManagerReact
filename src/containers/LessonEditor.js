@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "../css/Lessons.css"
 import TopicList from "./TopicList";
 
 export default class LessonEditor extends React.Component {
@@ -48,7 +48,7 @@ export default class LessonEditor extends React.Component {
 
     render() {
         return (
-            <div style={{backgroundColor: 'grey' ,paddingBottom : 230, paddingTop : 4, borderRadius: 3}}>
+            <div className="editor">
 
                 <TopicList courseId={this.state.courseId} moduleId={this.state.moduleId} lessonId={this.state.lessonId}/>
             </div>

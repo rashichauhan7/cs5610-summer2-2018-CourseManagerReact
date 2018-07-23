@@ -1,7 +1,7 @@
 import React from 'react'
 import LessonItem from "../components/LessonItem";
 import LessonService from "../services/LessonServiceClient";
-
+import "../css/Lessons.css"
 export default class LessonTabs extends React.Component
 {
 
@@ -113,21 +113,21 @@ export default class LessonTabs extends React.Component
 
     render () {
         return (
-            <div style={{marginTop: 10}}>
-                <ul style={{backgroundColor: 'white' , borderRadius: 3 ,height: 100, overflowX: 'auto'}} className="nav nav-tabs container-fluid" >
+            <div className="lesoncontainer">
+                <ul  className="nav nav-tabs container-fluid" >
                     {this.renderLessons()}
-                    <li style={{marginTop: 6, marginRight: 4}}>
+                    <li className="lessoninput">
 
-                            <input className="col-xs-2" style={{borderRadius : 5, borderColor : 'white'}}
+                            <input className="col-xs-2 newlesson"
                                placeholder="Lesson" onChange={this.titleChanged} ref = "newlesson">
                             </input>
                     </li>
-                    <li  style={{marginTop: 6}}>
+                    <li  className="btns">
                         <span  className="float-right">
-                            <button className="btn" type="button" ref="create" onClick={this.createLesson}>
+                            <button className="btn " type="button" ref="create" onClick={this.createLesson}>
                                 <i className="fa-1x fa fa-plus"></i>
                             </button>
-                            <button style={{display: 'none'}}  onClick={this.updateLesson} className="btn btn-block"  ref = 'update'>
+                            <button onClick={this.updateLesson} className="btn btn-block update"  ref = 'update'>
                         <i className="fa-1x fa fa-check"></i>
                     </button>
                         </span>

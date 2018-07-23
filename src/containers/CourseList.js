@@ -4,6 +4,7 @@ import CourseCard from "../components/CourseCard"
 import CourseService from "../services/CourseServiceClient";
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import '../css/Courses.css'
 class CourseList extends React.Component {
     constructor() {
         super();
@@ -117,7 +118,7 @@ class CourseList extends React.Component {
             <div>
 
                 <input onChange={this.searchCourse} className="form-control"
-                                        placeholder="Search" style={{marginBottom : 5}} />
+                                        placeholder="Search" />
             <table className="table">
                 <thead>
                  <tr>
@@ -130,7 +131,7 @@ class CourseList extends React.Component {
                      <th>Owned by</th>
                      <th>Last modified by me</th>
                      <th ref = "grid"><i  className="fa fa-th-large fa-2x" onClick={this.gridView}></i></th>
-                     <th ref = "list" style={{display : 'none'}}><i  className="fa fas fa-list-ul fa-2x" onClick={this.listView}></i></th>
+                     <th ref = "list" className="listview"><i  className="fa fas fa-list-ul fa-2x" onClick={this.listView}></i></th>
                      <th></th>
                  </tr>
             </thead>

@@ -1,6 +1,7 @@
 import React from "react";
 import ModuleListItem from '../components/ModuleListItem'
 import ModuleService from '../services/ModuleServiceClient';
+import "../css/Module.css"
 export default class ModuleList extends React.Component {
 
         constructor(props){
@@ -110,15 +111,15 @@ export default class ModuleList extends React.Component {
             return (
                 <div className="container-fluid">
 
-                    <input style={{marginTop: 10}} className="form-control"
+                    <input className="form-control newmodule"
                     onChange={this.titleChanged}
                             placeholder="title" ref="newModule"></input>
 
-                    <button style={{backgroundColor: 'black'}}  onClick={this.createModule} className="btn btn-block"  ref = 'create'>
-                        <i style={{color: 'grey'}} className="fa fa-plus"></i>
+                    <button  onClick={this.createModule} className="btn btn-block plus"  ref = 'create'>
+                        <i className="fa fa-plus"></i>
                     </button>
-                    <button style={{backgroundColor: 'black', display: 'none'}}  onClick={this.updateModule} className="btn btn-block"  ref = 'update'>
-                        <i style={{color: 'grey'}} className="fa fa fa-check"></i>
+                    <button   onClick={this.updateModule} className="btn btn-block update"  ref = 'update'>
+                        <i  className="fa fa fa-check check"></i>
                     </button>
                     <ul className="list-group">
                     {this.renderListOfModules()}

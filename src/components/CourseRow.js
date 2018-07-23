@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import CourseService from "../services/CourseServiceClient";
+import '../css/Courses.css'
 class CourseRow extends React.Component {
     constructor(props) {
         super(props);
@@ -52,10 +53,10 @@ class CourseRow extends React.Component {
                 <tbody>
             <tr>
                 <td>
-                    <Link to= {`/course/${this.props.course.id}`} style ={{marginRight: 5,color : 'black'}} ref= "course" >
+                    <Link to= {`/course/${this.props.course.id}`} className="courseLink" ref= "course" >
                         {this.props.course.title}
                     </Link>
-                <input type="text" ref = "newCourse" style={{display: 'none'}}></input></td>
+                <input type="text" ref = "newCourse" className="coursename"></input></td>
                 <td>
                     me
                 </td>
@@ -68,7 +69,7 @@ class CourseRow extends React.Component {
                             onClick={() => {this.edit(this.props.course.id)}} >
                         <i className="fa fa-pencil"></i>
                     </button>
-                    <button style={{display: 'none'}}  className="btn btn-light" ref = "upd"
+                    <button  className="btn btn-light update" ref = "upd"
                             onClick={() => {this.update()}} >
                         <i className="fa fa-check"></i>
                     </button>

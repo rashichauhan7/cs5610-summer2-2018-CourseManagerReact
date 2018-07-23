@@ -1,0 +1,36 @@
+.newmodule
+{
+    margin-top: 10px;
+}
+.check
+{
+ color: grey;
+}
+.update
+{
+    background-color: black;
+    display: none;
+}
+.moduleitems
+{
+
+    width : 423px;
+}
+
+.modulename
+{
+    margin-right: 5px;
+    color : black;
+}
+
+.delete
+{
+    margin : 5px;
+}
+.editor
+{
+    background-color: grey;
+    padding-top : 4px;
+    border-radius: 5px;
+    border-color: white;
+}

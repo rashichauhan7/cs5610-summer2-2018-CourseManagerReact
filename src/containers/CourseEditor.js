@@ -1,6 +1,6 @@
 import React from 'react'
 import ModuleList from './ModuleList'
-
+import "../css/Courses.css"
 
 export default class CourseEditor
     extends React.Component {
@@ -29,7 +29,7 @@ export default class CourseEditor
 
     render() {
         return (
-            <div className="col-4" style={{backgroundColor: 'grey' , paddingBottom : 4, paddingTop : 4, borderRadius: 3}}>
+            <div className="col-4 editor" >
             <div className="container-fluid">
 
                 <ModuleList courseId={this.state.courseId}/>
