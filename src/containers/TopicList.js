@@ -28,6 +28,8 @@ export default class TopicList extends React.Component
 
 
     createTopic() {
+        if(this.state.topic.title.length == 0)
+            this.state.topic.title = "New Topic";
         this.topicService.createTopic(this.state.courseId, this.state.moduleId, this.state.lessonId, this.state.topic)
             .then(() => {
                 this.refs.newTopic.value = '';

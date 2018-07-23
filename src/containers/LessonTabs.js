@@ -27,6 +27,8 @@ export default class LessonTabs extends React.Component
 
 
     createLesson() {
+        if(this.state.lesson.title.length == 0)
+            this.state.lesson.title = "New Lesson";
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
             .then(() => {
                 this.refs.newlesson.value = '';
