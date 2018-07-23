@@ -85,7 +85,9 @@ export default class TopicList extends React.Component
         if(window.confirm("Are you sure you want to delete"))
         {
                     this.topicService.deleteTopic(topicId)
-                        .then(this.findAllTopics(this.state.courseId, this.state.moduleId, this.state.lessonId));
+                        .then(() => {
+                            this.findAllTopics(this.state.courseId, this.state.moduleId, this.state.lessonId)
+                        });
                 }
 
     }

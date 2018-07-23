@@ -32,6 +32,7 @@ export default class LessonTabs extends React.Component
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
             .then(() => {
                 this.refs.newlesson.value = '';
+                this.state.lesson = {title: '', id: ''};
                 this.findAllLessons(this.state.courseId, this.state.moduleId);
 
             })
@@ -75,7 +76,9 @@ export default class LessonTabs extends React.Component
         if(window.confirm("Are you sure you want to delete"))
         {
             this.lessonService.deleteLesson(lessonId)
-                .then(this.findAllLessons(this.state.courseId, this.state.moduleId));
+                .then(() => {
+                    this.findAllLessons(this.state.courseId, this.state.moduleId)
+                });
         }
     }
 
@@ -127,7 +130,7 @@ export default class LessonTabs extends React.Component
                             <button className="btn " type="button" ref="create" onClick={this.createLesson}>
                                 <i className="fa-1x fa fa-plus"></i>
                             </button>
-                            <button onClick={this.updateLesson} className="btn btn-block update"  ref = 'update'>
+                            <button onClick={this.updateLesson} className="btn btn-block updatebtn"  ref = 'update'>
                         <i className="fa-1x fa fa-check"></i>
                     </button>
                         </span>

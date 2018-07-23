@@ -71,6 +71,7 @@ class CourseList extends React.Component {
         this.courseService.createCourse(this.state.course)
             .then(() => {
                 this.refs.newCourse.value = '';
+                this.state.course = { title: '', modified:''};
                 this.findAllCourses();
             });
     }

@@ -27,7 +27,9 @@ export default class ModuleList extends React.Component {
         if(window.confirm("Are you sure you want to delete"))
         {
             this.moduleService.deleteModule(moduleId)
-                .then(this.findAllModulesForCourse(this.state.courseId));
+                .then(() => {
+                    this.findAllModulesForCourse(this.state.courseId)
+                });
         }
 
     }
@@ -99,6 +101,7 @@ export default class ModuleList extends React.Component {
         this.moduleService.createModule(this.state.courseId, this.state.module)
             .then(() => {
                 this.refs.newModule.value = '';
+                this.state.module = { title: '', id:''};
                 this.findAllModulesForCourse
                 (this.state.courseId);
             })
