@@ -108,8 +108,8 @@ export default class LessonTabs extends React.Component
 
     render () {
         return (
-            <div>
-                <ul style={{backgroundColor: 'white' , borderRadius: 3}}className="nav nav-tabs container-fluid" >
+            <div style={{marginTop: 10}}>
+                <ul style={{backgroundColor: 'white' , borderRadius: 3 ,height: 100, overflowX: 'auto'}} className="nav nav-tabs container-fluid" >
                     {this.renderLessons()}
                     <li style={{marginTop: 6, marginRight: 4}}>
 

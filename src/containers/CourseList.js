@@ -16,46 +16,62 @@ class CourseList extends React.Component {
         this.searchCourse = this.searchCourse.bind(this);
         this.gridView = this.gridView.bind(this);
         this.listView = this.listView.bind(this);
-        this.state= {
-            initialCourses : [],
+        this.state = {
+            initialCourses: [],
             courses: [],
-            view: "list"
+            course: { title: '', modified:''},
+            view: "list",
+
         };
     }
 
     deleteCourse(courseId) {
-        this.courseService
-            .deleteCourse(courseId)
-            .then(() => { this.componentDidMount()});
-    }
-
-    searchCourse(event)
-    {
-        var updatedList = this.state.initialCourses;
-                updatedList = updatedList.filter(function(item){
-                    return item.title.toLowerCase().search(
-                        event.target.value.toLowerCase()) !== -1;
+        var ans = window.confirm("Are you sure you want to delete");
+        if(ans) {
+            this.courseService
+                .deleteCourse(courseId)
+                .then(() => {
+                    this.componentDidMount()
                 });
-                this.setState({courses: updatedList});
+        }
+    }
+
+    searchCourse(event) {
+        var updatedList = this.state.initialCourses;
+        updatedList = updatedList.filter(function (item) {
+            return item.title.toLowerCase().search(
+                event.target.value.toLowerCase()) !== -1;
+        });
+        this.setState({courses: updatedList});
 
     }
+
     componentDidMount() {
         this.findAllCourses();
 
 
     }
+
     titleChanged(event) {
         var date = new Date();
         this.setState({
-            course: { title: event.target.value , modified: date}
+            course: {title: event.target.value, modified: date}
         });
 
     }
+
     createCourse() {
-       this.courseService.createCourse(this.state.course)
-           .then(() => {
-               this.refs.newCourse.value = '';
-               this.findAllCourses(); });
+        var date = new Date();
+        if(this.state.course.title.length === 0) {
+            this.state.course.title = "New Course";
+            this.state.course.modified = date;
+
+        }
+        this.courseService.createCourse(this.state.course)
+            .then(() => {
+                this.refs.newCourse.value = '';
+                this.findAllCourses();
+            });
     }
 
     findAllCourses() {
@@ -66,9 +82,8 @@ class CourseList extends React.Component {
                 console.log(courses);
             });
     }
-
-    renderCourseRows() {
-
+    renderCourseRows()
+    {
         var rows = this.state.courses.map((course) => {
             if(this.state.view == "grid")
                 return <CourseCard key = {course.id} course={course} delete={this.deleteCourse} findAllCourses={this.findAllCourses}/>

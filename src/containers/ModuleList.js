@@ -23,8 +23,12 @@ export default class ModuleList extends React.Component {
 
     deleteModule(moduleId)
     {
-        this.moduleService.deleteModule(moduleId)
-            .then(this.findAllModulesForCourse(this.state.courseId));
+        var ans = window.confirm("Are you sure you want to delete");
+        if(ans) {
+            this.moduleService.deleteModule(moduleId)
+                .then(this.findAllModulesForCourse(this.state.courseId));
+        }
+
     }
 
     updateModule()
@@ -83,10 +87,14 @@ export default class ModuleList extends React.Component {
 
     titleChanged(event) {
         console.log(event.target.value);
+
         this.setState({module:{title: event.target.value}});
     }
 
     createModule() {
+
+        if(this.state.module.title === "")
+            this.state.module.title = "New Module";
         this.moduleService.createModule(this.state.courseId, this.state.module)
             .then(() => {
                 this.refs.newModule.value = '';

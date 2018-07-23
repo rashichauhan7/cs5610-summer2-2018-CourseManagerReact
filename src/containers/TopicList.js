@@ -120,7 +120,7 @@ export default class TopicList extends React.Component
 
     render () {
         return (
-            <div>
+            <div  style={{marginTop: 30}}>
                 <ul className="nav container-fluid">
                     {this.renderTopics()}
                     <li className="nav-link ">

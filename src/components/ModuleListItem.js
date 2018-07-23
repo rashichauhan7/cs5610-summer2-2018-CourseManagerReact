@@ -9,6 +9,7 @@ export default class ModuleListItem extends React.Component{
             courseId : ''
 
         };
+        this.highlight = this.highlight.bind(this);
     }
 
     componentDidMount() {
@@ -30,12 +31,23 @@ export default class ModuleListItem extends React.Component{
         this.setState({courseId: courseId});
     }
 
+    highlight(event)
+    {
+        var parent = event.target.parentNode;
+        console.log(parent);
+        var elements = document.getElementsByClassName('list-group-item');
+        for(var i = 0; i < elements.length; i++)
+            elements[i].style.backgroundColor = "white";
+        parent.style.backgroundColor = "grey";
+
+    }
+
     render() {
         return (
             <li className="list-group-item" style ={{width : 423}}>
 
 
-                <Link  to= {`/course/${this.props.courseId}/module/${this.props.moduleId}`}  style ={{marginRight: 5,color : 'black'}}>
+                <Link onClick = {this.highlight} to= {`/course/${this.props.courseId}/module/${this.props.moduleId}`}  style ={{marginRight: 5,color : 'black'}}>
                 {this.props.title}
                 </Link>
 
