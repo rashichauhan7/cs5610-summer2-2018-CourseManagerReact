@@ -38,7 +38,7 @@ export default class ModuleListItem extends React.Component{
         var elements = document.getElementsByClassName('list-group-item');
         for(var i = 0; i < elements.length; i++)
             elements[i].style.backgroundColor = "white";
-        parent.style.backgroundColor = "grey";
+        parent.style.backgroundColor = "gray";
 
     }
 
