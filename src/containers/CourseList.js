@@ -26,8 +26,8 @@ class CourseList extends React.Component {
     }
 
     deleteCourse(courseId) {
-        var ans = window.confirm("Are you sure you want to delete");
-        if(ans) {
+        if(window.confirm("Are you sure you want to delete"))
+        {
             this.courseService
                 .deleteCourse(courseId)
                 .then(() => {

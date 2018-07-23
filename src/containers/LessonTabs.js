@@ -70,8 +70,11 @@ export default class LessonTabs extends React.Component
 
     deleteLesson(lessonId)
     {
-        this.lessonService.deleteLesson(lessonId)
-            .then(this.findAllLessons(this.state.courseId, this.state.moduleId));
+        if(window.confirm("Are you sure you want to delete"))
+        {
+            this.lessonService.deleteLesson(lessonId)
+                .then(this.findAllLessons(this.state.courseId, this.state.moduleId));
+        }
     }
 
     updateLesson()

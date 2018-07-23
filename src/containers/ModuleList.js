@@ -23,8 +23,8 @@ export default class ModuleList extends React.Component {
 
     deleteModule(moduleId)
     {
-        var ans = window.confirm("Are you sure you want to delete");
-        if(ans) {
+        if(window.confirm("Are you sure you want to delete"))
+        {
             this.moduleService.deleteModule(moduleId)
                 .then(this.findAllModulesForCourse(this.state.courseId));
         }
