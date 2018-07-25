@@ -1,18 +1,29 @@
 import React from "react";
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
 import CourseEditor from './CourseEditor'
 import CourseList from './CourseList';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import ModuleEditor from "./ModuleEditor";
 import LessonEditor from "./LessonEditor"
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import WidgetListComponent from '../containers/widgets/WidgetListContainer'
+import {widgetReducer} from "../reducers/WidgetReducer";
+import WidgetListContainer from "./widgets/WidgetListContainer";
+
+
+let store = createStore(widgetReducer)
+
 export default class CourseManager extends React.Component {
+
 
 
     render()
     {
         return(
             //alias className
+            <Provider store={store}>
             <Router>
             <div className="container-fluid">
                 <h1 style={{textAlign: 'center' , marginBottom: 20}}>Course Manager</h1>
@@ -31,11 +42,13 @@ export default class CourseManager extends React.Component {
                         <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                         component={LessonEditor}>
                         </Route>
-
+                        <Route path="/widgets" component={WidgetListContainer}/>
+                        <Link to='/widgets'>Widgets</Link>
                     </div>
                 </div>
                 </div>
             </Router>
+            </Provider>
         )
     }
 }
