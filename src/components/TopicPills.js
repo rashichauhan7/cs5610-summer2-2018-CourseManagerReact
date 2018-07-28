@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 export default class TopicPills
     extends React.Component {
 
@@ -22,7 +22,7 @@ export default class TopicPills
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
         this.setLessonId(newProps.lessonId);
-
+        this.setTopicId(newProps.topicId);
     }
 
     setCourseId(courseId) {
@@ -47,8 +47,8 @@ export default class TopicPills
     render() { return(
         <ul className="nav">
             <li className="nav-item" >
-                <a className="nav-link active" style={{color: 'black'}}
-                   href="#">{this.props.title}</a>
+                <Link className="nav-link active" style={{color: 'black'}}
+                   to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topicId}/widgets`}>{this.props.title}</Link>
             </li>
             <li>
             <span  className="float-right">

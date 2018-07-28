@@ -1,45 +1,92 @@
 import React from 'react'
-import WidgetType1 from '../widgets/WidgetType1'
-import WidgetType2 from '../widgets/WidgetType2'
-import WidgetType3 from '../widgets/WidgetType3'
-const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget}) => {
-    let widgetTitle;
-    let widgetType;
-    return (
+import ImageWidget from '../widgets/ImageWidget'
+import HeadingWidget from '../widgets/HeadingWidget'
+import ListWidget from '../widgets/ListWidget'
+import LinkWidget from '../widgets/LinkWidget'
+import ParagraphWidget from '../widgets/ParagraphWidget'
+import ToggleButton from 'react-toggle-button'
 
-        <div>
-            <h1>Widget List ({widgets.length})</h1>
-            <ul className="list-group">
+class WidgetListComponent extends React.Component
+{
+    constructor(props)
+    {
+        super(props);
+        let widgetTitle;
+        let widgetType;
+        this.state = { toggleActive: false, topicId: '' };
 
-                <li className="list-group-item">
-                    <input ref={(node) =>{widgetTitle = node}} className="form-control"/>
-                    <button className="btn btn-success" onClick={() => {
-                        let widget = {title: widgetTitle.value, id: (new Date().getTime()), type: widgetType.value};
-                        createWidget(widget);
-                        widgetTitle.value = '';
-                    }}> Add Widget</button>
-                    <select ref={node => widgetType = node} className='form-control'>
-                        <option value="Type 1">Widget Type 1</option>
-                        <option value="Type 2">Widget Type 2</option>
-                        <option value="Type 3">Widget Type 3</option>
-                    </select>
-                </li>
-                {
-                    widgets.map((widget, index) =>
-                        <li className="list-group-item" key={index}>
-                            {widget.title} ({widget.id}) - {widget.type}
-                            <button className="float-right btn btn-danger"
-                                    onClick={() => deleteWidget(widget.id)}> Delete </button>
-                            <div>
-                                {widget.type === 'Type 1' && <WidgetType1 updateWidget = {updateWidget} widget={widget}/>}
-                                {widget.type === 'Type 3' && <WidgetType3 updateWidget = {updateWidget} widget={widget}/>}
-                                {widget.type === 'Type 2' && <WidgetType2 updateWidget = {updateWidget} widget={widget}/>}
+    }
 
-                            </div>
-                        </li>)
-                }
-            </ul>
-        </div>
-    )
+    componentWillReceiveProps(newprops)
+    {
+        if(newprops.topicId !== '' && newprops.topicId !== this.state.topicId)
+        {
+            this.setState({topicId:newprops.topicId});
+            this.props.loadAllWidgets(newprops.topicId);
+        }
+    }
+
+    render () {
+        return (
+
+            <div className="container-fluid">
+                <div>
+
+                    <label className="float-right " >
+                        <span>Preview</span>
+                        <ToggleButton
+                            value={ this.state.toggleActive || false }
+                            onToggle={(value) => {
+                                this.setState({
+                                    toggleActive: !value,
+                                })
+                            }}/>
+                    </label>
+
+                    <button onClick={() => this.props.saveWidget(this.state.topicId)} className="btn btn-primary float-right" style={{marginRight: 10}}>Save</button>
+
+                </div>
+
+
+                <ul className="list-group">
+
+                    <li className="list-group-item">
+                        <input ref={(node) =>{this.widgetTitle = node}} className="form-control"/>
+                        <button className="btn btn-success" onClick={() => {
+                            console.log(new Date().getTime());
+                            let widget = {title: this.widgetTitle.value, id: new Date().getTime() % 100000000 , type: this.widgetType.value};
+                            this.props.createWidget(widget);
+                            this.widgetTitle.value = '';
+                        }}> Add Widget</button>
+                        <select ref={node => this.widgetType = node} className='form-control'>
+                            <option value="HEADING">HEADING</option>
+                            <option value="IMAGE">IMAGE</option>
+                            <option value="LIST">List Widget</option>
+                            <option value="LINK">Link Widget</option>
+                            <option value="PARAGRAPH">Paragraph Widget</option>
+
+                        </select>
+                    </li>
+                    {
+                        this.props.widgets.map((widget, index) =>
+                            <li className="list-group-item" key={index}>
+
+                                <button className="float-right btn btn-danger"
+                                        onClick={() => this.props.deleteWidget(widget.id)}> Delete </button>
+                                <div>
+                                    {widget.type === 'PARAGRAPH' && <ParagraphWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
+                                    {widget.type === 'IMAGE' && <ImageWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
+                                    {widget.type === 'LINK' && <LinkWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
+                                    {widget.type === 'HEADING' && <HeadingWidget toggleActive = {this.state.toggleActive} updateWidget = {this.props.updateWidget} widget={widget}/>}
+                                    {widget.type === 'LIST' && <ListWidget toggleActive = {this.state.toggleActive} updateWidget = {this.props.updateWidget} widget={widget}/>}
+                                </div>
+                            </li>)
+                    }
+                </ul>
+            </div>
+        )}
+
 }
+
+
 export default WidgetListComponent;

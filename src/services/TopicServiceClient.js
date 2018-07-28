@@ -1,4 +1,5 @@
-const TOPIC_URL ='https://webdev-summer2-2018-1.herokuapp.com/api/topic';
+// const TOPIC_URL ='https://webdev-summer2-2018-1.herokuapp.com/api/topic';
+const TOPIC_URL ='http://localhost:8080/api/topic';
 const TOPIC_API_URL =
     'https://webdev-summer2-2018-1.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic';
 const TOPIC_API_URL_Actions = 'https://webdev-summer2-2018-1.herokuapp.com/api/topic/TID';

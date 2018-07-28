@@ -8,9 +8,9 @@ import ModuleEditor from "./ModuleEditor";
 import LessonEditor from "./LessonEditor"
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
-import WidgetListComponent from '../containers/widgets/WidgetListContainer'
+import TopicEditor from "./TopicEditor"
 import {widgetReducer} from "../reducers/WidgetReducer";
-import WidgetListContainer from "./widgets/WidgetListContainer";
+
 
 
 let store = createStore(widgetReducer)
@@ -42,8 +42,10 @@ export default class CourseManager extends React.Component {
                         <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                         component={LessonEditor}>
                         </Route>
-                        <Route path="/widgets" component={WidgetListContainer}/>
-                        <Link to='/widgets'>Widgets</Link>
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId/widgets" component={TopicEditor}/>
+                        {/*<Route path="/widgets" component={WidgetListContainer}/>*/}
+                        {/*<Link to="/widgets">Widgets</Link>*/}
+
                     </div>
                 </div>
                 </div>

@@ -1,7 +1,8 @@
 let _singleton = Symbol();
-const COURSE_API_URL =
-    'https://webdev-summer2-2018-1.herokuapp.com/api/course';
-const COURSE_API_URL_ACTIONS = 'https://webdev-summer2-2018-1.herokuapp.com/api/course/CID'
+// const COURSE_API_URL ='https://webdev-summer2-2018-1.herokuapp.com/api/course';
+const COURSE_API_URL ='http://localhost:8080/api/course';
+
+ const COURSE_API_URL_ACTIONS = 'https://webdev-summer2-2018-1.herokuapp.com/api/course/CID'
 class CourseService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)

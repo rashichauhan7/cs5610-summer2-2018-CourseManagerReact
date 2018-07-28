@@ -1,4 +1,5 @@
-const LESSON_URL = 'https://webdev-summer2-2018-1.herokuapp.com/api/lesson';
+// const LESSON_URL = 'https://webdev-summer2-2018-1.herokuapp.com/api/lesson';
+const LESSON_URL = 'http://localhost:8080/api/lesson';
 const LESSON_API_URL =
     'https://webdev-summer2-2018-1.herokuapp.com/api/course/CID/module/MID/lesson';
 const LESSON_API_URL_Actions = 'https://webdev-summer2-2018-1.herokuapp.com/api/lesson/LID';
