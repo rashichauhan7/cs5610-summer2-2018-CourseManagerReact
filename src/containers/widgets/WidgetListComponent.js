@@ -12,9 +12,17 @@ class WidgetListComponent extends React.Component
     {
         super(props);
         let widgetTitle;
-        let widgetType;
-        this.state = { toggleActive: false, topicId: '' };
+       // let widgetType;
+        let newType;
+        this.state = { toggleActive: false, topicId: ''};
+        this.changeNode = this.changeNode.bind(this);
+    }
 
+    changeNode(event, widget)
+    {
+        widget.type = event.target.value;
+        console.log(event.target.value);
+        this.props.updateWidget(widget);
     }
 
     componentWillReceiveProps(newprops)
@@ -33,17 +41,11 @@ class WidgetListComponent extends React.Component
                 <ul className="list-group">
 
                     <li className="list-group-item">
-                        <select ref={node => this.widgetType = node} className='form-control'>
-                            <option value="HEADING">HEADING</option>
-                            <option value="IMAGE">IMAGE</option>
-                            <option value="LIST">List Widget</option>
-                            <option value="LINK">Link Widget</option>
-                            <option value="PARAGRAPH">Paragraph Widget</option>
 
-                        </select>
                         <button className="btn btn-success form-control" onClick={() => {
-                            console.log(new Date().getTime());
-                            let widget = {id: new Date().getTime() % 100000000 , type: this.widgetType.value};
+
+
+                            let widget = {id: new Date().getTime() % 100000000 , type: "HEADING"};
                             this.props.createWidget(widget);
 
                         }}> Add Widget</button>
@@ -64,7 +66,9 @@ class WidgetListComponent extends React.Component
                         </label>
                     </li>
                     {
+
                         this.props.widgets.map((widget, index) =>
+
                             <li className="list-group-item" key={index}>
 
                                 <button className="float-right btn btn-danger"
@@ -75,6 +79,18 @@ class WidgetListComponent extends React.Component
                                 <button className="float-right btn btn-warning"
                                 onClick={() => this.props.down(widget)}
                                 ><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+
+                                {widget.edit &&
+                                <select className="float-right btn"
+                                                        ref="node" value = {widget.type}
+                                onChange={(event) => this.changeNode(event,widget)}>
+                                    <option value="HEADING">HEADING</option>
+                                    <option value="IMAGE">IMAGE</option>
+                                    <option value="LIST">LIST</option>
+                                    <option value="LINK">LINK</option>
+                                    <option value="PARAGRAPH">PARAGRAPH</option>
+
+                                </select>}
                                 <div>
                                     {widget.type === 'PARAGRAPH' && <ParagraphWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
                                     {widget.type === 'IMAGE' && <ImageWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}

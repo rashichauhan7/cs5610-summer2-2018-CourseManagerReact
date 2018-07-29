@@ -10,7 +10,7 @@ const ImageWidget = ({toggleActive, widget, updateWidget}) => {
         <div>
             {widget.edit && !toggleActive && <div>
             <h3> Image Widget</h3>
-            <input placeholder="Widget Source" ref = {node => src = node}
+            <input placeholder="Image URL" ref = {node => src = node}
                    id='URL'
                    onChange={() => {
                        widget.src = src.value;

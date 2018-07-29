@@ -44,8 +44,9 @@ export const widgetReducer = (state = initialState, action) =>
         case 'CREATE_WIDGET':
             action.widget.edit = true;
             state.widgets = [
-                action.widget,
-                ...state.widgets
+
+                ...state.widgets,
+                action.widget
 
             ]
             console.log(state.widgets);

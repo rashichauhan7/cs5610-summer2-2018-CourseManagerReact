@@ -4,12 +4,13 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
 {
     let text;
     let ordered;
+    let title;
     return (
         <div>
             {widget.edit && !toggleActive &&
             <div>
             <h3>List Widget</h3>
-            <textarea ref={node => text = node} value = {widget.listItems} className="form-control" onChange={() => {
+            <textarea placeholder="Enter one list item per line." ref={node => text = node} value = {widget.listItems} className="form-control" onChange={() => {
                 widget.listItems = text.value;
                 updateWidget(widget);
             }}></textarea>
@@ -20,6 +21,11 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
                             updateWidget(widget);
                         }}
             />Ordered</label>
+                <label></label>
+                <input onChange={() => {
+                    widget.title = title.value;
+                    updateWidget(widget);
+                }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
         </div>}
             <h4>Preview</h4>
             {widget.listItems !== undefined  && widget.ordered &&
