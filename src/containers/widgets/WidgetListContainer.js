@@ -10,6 +10,8 @@ const stateToPropertyMapper = (state, ownProps) => (
 
 const dispatcherToPropertyMapper = dispatch => (
     {
+        up: (w) => dispatch({type: 'UP', widget: w}),
+        down : (w) => dispatch({type: 'DOWN', widget: w}),
         deleteWidget : (widgetId) => dispatch({type: 'DELETE_WIDGET', widgetId: widgetId}),
         createWidget : (w) => dispatch({type: 'CREATE_WIDGET', widget: w}),
         saveWidget : (topicId) => dispatch({type: 'SAVE_WIDGETS', topicId: topicId}),

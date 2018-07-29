@@ -6,6 +6,8 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
     let ordered;
     return (
         <div>
+            {widget.edit && !toggleActive &&
+            <div>
             <h3>List Widget</h3>
             <textarea ref={node => text = node} value = {widget.listItems} className="form-control" onChange={() => {
                 widget.listItems = text.value;
@@ -18,8 +20,9 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
                             updateWidget(widget);
                         }}
             />Ordered</label>
-
-            {toggleActive && widget.ordered &&
+        </div>}
+            <h4>Preview</h4>
+            {widget.listItems !== undefined  && widget.ordered &&
             <ol>
                 {widget.listItems.split('\n').map((item, index) =>
                     (
@@ -27,7 +30,7 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
                     ))}
             </ol>
             }
-            {toggleActive && !widget.ordered && <ul>
+            {widget.listItems !== undefined && !widget.ordered && <ul>
                 {widget.listItems.split('\n').map((item, index) =>
                     (
                         <li key={index}>{item}</li>

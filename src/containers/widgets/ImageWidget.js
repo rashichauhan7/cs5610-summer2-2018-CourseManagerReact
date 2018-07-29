@@ -1,19 +1,28 @@
 import React from 'react'
 
 
+
 const ImageWidget = ({toggleActive, widget, updateWidget}) => {
     let src;
+    let title;
+
     return (
         <div>
+            {widget.edit && !toggleActive && <div>
             <h3> Image Widget</h3>
-            <input ref = {node => src = node}
+            <input placeholder="Widget Source" ref = {node => src = node}
                    id='URL'
                    onChange={() => {
                        widget.src = src.value;
                        updateWidget(widget);
                    }}
                    className="form-control"/>
-            {toggleActive && <div >
+            <input onChange={() => {
+                widget.title = title.value;
+                updateWidget(widget);
+            }} placeholder="Widget Name" ref={node => title = node} className="form-control" id="title"/>
+        </div>}
+            <div>
             <h4>Preview</h4>
                 <div>
                     <img width="560"
@@ -21,7 +30,7 @@ const ImageWidget = ({toggleActive, widget, updateWidget}) => {
                     </img>
                 </div>
 
-        </div>}
+        </div>
         </div>
     )
 }

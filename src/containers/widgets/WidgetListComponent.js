@@ -30,34 +30,9 @@ class WidgetListComponent extends React.Component
         return (
 
             <div className="container-fluid">
-                <div>
-
-                    <label className="float-right " >
-                        <span>Preview</span>
-                        <ToggleButton
-                            value={ this.state.toggleActive || false }
-                            onToggle={(value) => {
-                                this.setState({
-                                    toggleActive: !value,
-                                })
-                            }}/>
-                    </label>
-
-                    <button onClick={() => this.props.saveWidget(this.state.topicId)} className="btn btn-primary float-right" style={{marginRight: 10}}>Save</button>
-
-                </div>
-
-
                 <ul className="list-group">
 
                     <li className="list-group-item">
-                        <input ref={(node) =>{this.widgetTitle = node}} className="form-control"/>
-                        <button className="btn btn-success" onClick={() => {
-                            console.log(new Date().getTime());
-                            let widget = {title: this.widgetTitle.value, id: new Date().getTime() % 100000000 , type: this.widgetType.value};
-                            this.props.createWidget(widget);
-                            this.widgetTitle.value = '';
-                        }}> Add Widget</button>
                         <select ref={node => this.widgetType = node} className='form-control'>
                             <option value="HEADING">HEADING</option>
                             <option value="IMAGE">IMAGE</option>
@@ -66,6 +41,27 @@ class WidgetListComponent extends React.Component
                             <option value="PARAGRAPH">Paragraph Widget</option>
 
                         </select>
+                        <button className="btn btn-success form-control" onClick={() => {
+                            console.log(new Date().getTime());
+                            let widget = {id: new Date().getTime() % 100000000 , type: this.widgetType.value};
+                            this.props.createWidget(widget);
+
+                        }}> Add Widget</button>
+                        <button onClick={() => {
+                            this.props.saveWidget(this.state.topicId);
+                            window.location.reload(true);
+                        }}
+                                className="btn btn-primary form-control" style={{marginRight: 10}}>Save</button>
+                        <label className="float-right" >
+                            <span>Preview</span>
+                            <ToggleButton
+                                value={ this.state.toggleActive || false }
+                                onToggle={(value) => {
+                                    this.setState({
+                                        toggleActive: !value,
+                                    })
+                                }}/>
+                        </label>
                     </li>
                     {
                         this.props.widgets.map((widget, index) =>
@@ -73,6 +69,12 @@ class WidgetListComponent extends React.Component
 
                                 <button className="float-right btn btn-danger"
                                         onClick={() => this.props.deleteWidget(widget.id)}> Delete </button>
+                                <button className="float-right btn btn-warning"
+                                 onClick={() => this.props.up(widget)}
+                                ><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+                                <button className="float-right btn btn-warning"
+                                onClick={() => this.props.down(widget)}
+                                ><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
                                 <div>
                                     {widget.type === 'PARAGRAPH' && <ParagraphWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
                                     {widget.type === 'IMAGE' && <ImageWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}

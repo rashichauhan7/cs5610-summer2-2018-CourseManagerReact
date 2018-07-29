@@ -5,6 +5,8 @@ let text;
 
     return (
         <div>
+            {widget.edit && !toggleActive &&<div>
+
             <h3>Paragraph widget</h3>
             <input placeholder="Paragraph Text" id="text"
                    ref = {node => text = node}
@@ -14,8 +16,11 @@ let text;
                           updateWidget(widget);
                        }
                    }/>
+            </div>}
+            <div>
             <h4>Preview</h4>
-            <textarea value={widget.text}></textarea>
+            <textarea style={{border:'none'}} readOnly className="form-control" value={widget.text}></textarea>
+            </div>
         </div>
     )
 }
