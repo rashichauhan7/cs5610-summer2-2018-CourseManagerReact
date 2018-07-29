@@ -7,6 +7,7 @@ let initialState = {
 export const widgetReducer = (state = initialState, action) =>
 {
     switch(action.type){
+
         case 'UP':
             var index = state.widgets.findIndex((widget) => widget.id === action.widget.id);
             if(index !== 0) {
