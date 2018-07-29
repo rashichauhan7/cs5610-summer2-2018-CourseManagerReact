@@ -34,9 +34,11 @@ import React from 'react'
                      widget.title = title.value;
                      updateWidget(widget);
                  }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                 <h4>Preview</h4>
+
              </div>}
              <div>
-                 <h4>Preview</h4>
+
              {(widget.size === "1" || widget.size === undefined) && <h1>{widget.text}</h1>}
              {widget.size === "2" && <h2>{widget.text}</h2>}
              {widget.size === "3" && <h3>{widget.text}</h3>}

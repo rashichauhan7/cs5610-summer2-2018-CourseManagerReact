@@ -73,12 +73,14 @@ class WidgetListComponent extends React.Component
 
                                 <button className="float-right btn btn-danger"
                                         onClick={() => this.props.deleteWidget(widget.id)}> Delete </button>
+                                {index !== 0 &&
                                 <button className="float-right btn btn-warning"
                                  onClick={() => this.props.up(widget)}
-                                ><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+                                > <i className="fa fa-arrow-up" aria-hidden="true"></i></button>}
+                                {index !== this.props.widgets.length -1 &&
                                 <button className="float-right btn btn-warning"
                                 onClick={() => this.props.down(widget)}
-                                ><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+                                ><i className="fa fa-arrow-down" aria-hidden="true"></i></button>}
 
                                 {widget.edit &&
                                 <select className="float-right btn"

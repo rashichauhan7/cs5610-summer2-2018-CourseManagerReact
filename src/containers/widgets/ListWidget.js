@@ -14,20 +14,26 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
                 widget.listItems = text.value;
                 updateWidget(widget);
             }}></textarea>
-            <label><input type="checkbox" checked={widget.ordered}
-                          ref = {node => ordered = node}
-                          onClick={() => {
-                            widget.ordered = ordered.checked;
-                            updateWidget(widget);
-                        }}
-            />Ordered</label>
+
+
+                <select  defaultValue="false" onChange={()=>
+                {
+                    console.log(ordered.value);
+                    widget.ordered = (ordered.value === "true");
+                    updateWidget(widget);
+                }} className='form-control' id='order' ref={node => ordered = node}>
+                    <option value="true">Ordered list</option>
+                    <option value="false">Unordered list</option>
+
+                </select>
                 <label></label>
                 <input onChange={() => {
                     widget.title = title.value;
                     updateWidget(widget);
                 }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                <h4>Preview</h4>
         </div>}
-            <h4>Preview</h4>
+
             {widget.listItems !== undefined  && widget.ordered &&
             <ol>
                 {widget.listItems.split('\n').map((item, index) =>

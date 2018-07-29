@@ -29,9 +29,10 @@ import React from 'react'
                     widget.title = title.value;
                     updateWidget(widget);
                 }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                <h4>Preview</h4>
             </div>}
             <div>
-            <h4>Preview</h4>
+
             <a href={widget.src}
             >{widget.text}</a>
             </div>

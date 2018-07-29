@@ -21,9 +21,10 @@ let title;
                     widget.title = title.value;
                     updateWidget(widget);
                 }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                <h4>Preview</h4>
             </div>}
             <div>
-            <h4>Preview</h4>
+
             <textarea style={{border:'none'}} readOnly className="form-control" value={widget.text}></textarea>
             </div>
         </div>

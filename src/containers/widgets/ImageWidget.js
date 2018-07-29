@@ -21,9 +21,10 @@ const ImageWidget = ({toggleActive, widget, updateWidget}) => {
                 widget.title = title.value;
                 updateWidget(widget);
             }} placeholder="Widget Name" ref={node => title = node} className="form-control" id="title"/>
+                <h4>Preview</h4>
         </div>}
             <div>
-            <h4>Preview</h4>
+
                 <div>
                     <img width="560"
                          height="560" src={widget.src}>
