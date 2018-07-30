@@ -79,7 +79,7 @@ export const widgetReducer = (state = initialState, action) =>
                 })
             }
         case 'SAVE_WIDGETS':
-            var url = 'http://localhost:8080/api/topic/TID/widget';
+            var url = 'https://webdev-summer2-2018-1.herokuapp.com/api/topic/TID/widget';
             state.widgets.map(widget => {
                  widget.edit = false;
             });

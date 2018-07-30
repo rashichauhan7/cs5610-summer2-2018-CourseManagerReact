@@ -18,7 +18,7 @@ const dispatcherToPropertyMapper = dispatch => (
         saveWidget : (topicId) => dispatch({type: 'SAVE_WIDGETS', topicId: topicId}),
         updateWidget : (w) => dispatch({type: 'UPDATE_WIDGET', widget: w}),
         loadAllWidgets : (topicId) => {
-            var url = 'http://localhost:8080/api/topic/TID/widget';
+            var url = 'https://webdev-summer2-2018-1.herokuapp.com/api/topic/TID/widget';
             fetch(url.replace('TID', topicId))
                 .then(response => response.json())
                 .then(widgets => dispatch({
