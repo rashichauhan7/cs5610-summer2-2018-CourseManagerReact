@@ -1,13 +1,25 @@
 
 let initialState = {
     widgets: []
-
 };
 
 export const widgetReducer = (state = initialState, action) =>
 {
     switch(action.type){
 
+        case 'IMAGES' :
+            return {
+                widgets: state.widgets.map(widget => {
+                    if(widget.id === action.id) {
+                        widget.src = action.image;
+                        return widget;
+                    }
+                    else
+                    {
+                        return widget;
+                    }
+                })
+            }
         case 'UP':
             var index = state.widgets.findIndex((widget) => widget.id === action.widget.id);
             if(index !== 0) {
@@ -80,6 +92,8 @@ export const widgetReducer = (state = initialState, action) =>
             });
 
             return state;
+
+
         default:
             return state;
 

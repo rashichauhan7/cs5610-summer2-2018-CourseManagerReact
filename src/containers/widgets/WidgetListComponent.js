@@ -1,4 +1,5 @@
 import React from 'react'
+import $ from '../../../node_modules/jquery';
 import ImageWidget from '../widgets/ImageWidget'
 import HeadingWidget from '../widgets/HeadingWidget'
 import ListWidget from '../widgets/ListWidget'
@@ -6,16 +7,16 @@ import LinkWidget from '../widgets/LinkWidget'
 import ParagraphWidget from '../widgets/ParagraphWidget'
 import ToggleButton from 'react-toggle-button'
 
+
 class WidgetListComponent extends React.Component
 {
     constructor(props)
     {
         super(props);
-        let widgetTitle;
-       // let widgetType;
-        let newType;
-        this.state = { toggleActive: false, topicId: ''};
+        this.state = { toggleActive: false, topicId: '', images : []};
         this.changeNode = this.changeNode.bind(this);
+        this.renderImages = this.renderImages.bind(this);
+        this.getImages = this.getImages.bind(this);
     }
 
     changeNode(event, widget)
@@ -34,10 +35,49 @@ class WidgetListComponent extends React.Component
         }
     }
 
+    renderImages(id) {
+        this.getImages().done(function (images) {
+            console.log(images);
+            var i = 0;
+            const self = this;
+            var image = images.items.map((image) => {
+                let link = image['media']['m'].replace("_m", "_b");
+                $('.image'+i).append( "<img key=" + (++i) + " border='0' src=" +link+" width='100' height='100'/>");
+
+            });
+        })
+
+
+    }
+    getImages() {
+        const self = this;
+        let images = [];
+            return $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+                {
+                    tags: "planet",
+                    tagmode: "any",
+                    format: "json"
+                }).done(function (data) {
+
+                    for (var i = 0; i < 10; i++) {
+                        var image_src = data.items[i]['media']['m'].replace("_m", "_b");
+                        images[i] = image_src;
+
+                    }
+                        self.setState({images:images});
+                        return images;
+                    });
+
+
+        }
+
+
+
     render () {
         return (
 
             <div className="container-fluid">
+
                 <ul className="list-group">
 
                     <li className="list-group-item">
@@ -95,7 +135,7 @@ class WidgetListComponent extends React.Component
                                 </select>}
                                 <div>
                                     {widget.type === 'PARAGRAPH' && <ParagraphWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
-                                    {widget.type === 'IMAGE' && <ImageWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
+                                    {widget.type === 'IMAGE' && <ImageWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget} renderImages = {this.renderImages} setImage={this.props.setImage}/>}
                                     {widget.type === 'LINK' && <LinkWidget toggleActive = {this.state.toggleActive}  updateWidget = {this.props.updateWidget} widget={widget}/>}
                                     {widget.type === 'HEADING' && <HeadingWidget toggleActive = {this.state.toggleActive} updateWidget = {this.props.updateWidget} widget={widget}/>}
                                     {widget.type === 'LIST' && <ListWidget toggleActive = {this.state.toggleActive} updateWidget = {this.props.updateWidget} widget={widget}/>}

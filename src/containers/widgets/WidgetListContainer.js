@@ -10,6 +10,7 @@ const stateToPropertyMapper = (state, ownProps) => (
 
 const dispatcherToPropertyMapper = dispatch => (
     {
+        setImage: (id, image) => dispatch({type: 'IMAGES', image: image, id: id}),
         up: (w) => dispatch({type: 'UP', widget: w}),
         down : (w) => dispatch({type: 'DOWN', widget: w}),
         deleteWidget : (widgetId) => dispatch({type: 'DELETE_WIDGET', widgetId: widgetId}),

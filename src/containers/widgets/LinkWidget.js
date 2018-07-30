@@ -19,6 +19,7 @@ import ToggleButton from 'react-toggle-button'
             {widget.edit && !toggleActive &&
             <div>
             <h3> Link Widget</h3>
+
                 <input ref = {node => text = node}
                        id='URL'
                        onChange={() => {
@@ -33,7 +34,7 @@ import ToggleButton from 'react-toggle-button'
                    onChange={() => {
                        widget.src = src.value;
                        updateWidget(widget);
-                   }} placeholder="Link src"
+                   }} placeholder="Link URL"
                    className="form-control"/>
                 <input onChange={() => {
                     widget.title = title.value;
@@ -50,14 +51,14 @@ import ToggleButton from 'react-toggle-button'
                 }} value={widget.title} ref={node => title = node} className="form-control" id="title"/>
                 <label>Link text</label>
                 <input ref = {node => text = node}
-                       id='URL'
+                       id='text'
                        onChange={() => {
                            widget.text = text.value;
                            updateWidget(widget);
                        }}
                        value={widget.text}
                        className="form-control"/>
-                <label>Link src</label>
+                <label>Link URL</label>
                 <input ref = {node => src = node}
                        id='URL'
                        onChange={() => {
