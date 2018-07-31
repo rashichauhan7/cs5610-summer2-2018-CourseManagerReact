@@ -52,7 +52,7 @@ class WidgetListComponent extends React.Component
     getImages() {
         const self = this;
         let images = [];
-            return $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+            return $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
                 {
                     tags: "planet",
                     tagmode: "any",
