@@ -35,10 +35,11 @@ let title;
             </div>}
 
             {!widget.edit && widget.editing && <div>
+                <label>Widget name</label>
                 <input onChange={() => {
                     widget.title = title.value;
                     updateWidget(widget);
-                }} value={widget.title} ref={node => title = node} className="form-control" id="title"/>
+                }} value={widget.title} ref={node => title = node} placeholder={widget.title} className="form-control" id="title"/>
                 <label>Paragraph Text</label>
                 <input className="form-control" value={widget.text} id="text"
                        ref = {node => text = node}
