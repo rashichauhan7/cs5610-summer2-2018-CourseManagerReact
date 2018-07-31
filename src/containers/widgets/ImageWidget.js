@@ -4,7 +4,7 @@ import ToggleButton from 'react-toggle-button'
 
 const ImageWidget = ({toggleActive, widget, updateWidget, images, renderImages,setImage}) => {
     let src;
-    let title;
+    let name;
 
     $('.image1').click(function(){
         $('#URL').val($('.image1').find('img').attr('src'));
@@ -68,9 +68,9 @@ const ImageWidget = ({toggleActive, widget, updateWidget, images, renderImages,s
                    }}
                    className="form-control"/>
             <input onChange={() => {
-                widget.title = title.value;
+                widget.name = name.value;
                 updateWidget(widget);
-            }} placeholder="Widget Name" ref={node => title = node} className="form-control" id="title"/>
+            }} placeholder="Widget Name" ref={node => name = node} className="form-control" id="name"/>
             <button className="btn" onClick={() => renderImages(widget.id)}>Get Random Images</button>
                 {/*<div>{renderImages(widget.id)}</div>*/}
                 <div className="row">
@@ -90,9 +90,9 @@ const ImageWidget = ({toggleActive, widget, updateWidget, images, renderImages,s
 
             {!widget.edit && widget.editing && <div>
                 <input onChange={() => {
-                    widget.title = title.value;
+                    widget.name = name.value;
                     updateWidget(widget);
-                }} value={widget.title} ref={node => title = node} className="form-control" id="title"/>
+                }} value={widget.name} ref={node => name = node} className="form-control" id="name"/>
                 <input value={widget.src} ref = {node => src = node}
 
                        onChange={() => {

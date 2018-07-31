@@ -5,7 +5,7 @@ import ToggleButton from 'react-toggle-button'
  const LinkWidget = ({toggleActive, widget, updateWidget}) => {
     let src;
     let text;
-    let title;
+    let name;
     return (
         <div>
             <label  className="float-right" style={{marginRight: 10}}>
@@ -37,18 +37,18 @@ import ToggleButton from 'react-toggle-button'
                    }} placeholder="Link URL"
                    className="form-control"/>
                 <input onChange={() => {
-                    widget.title = title.value;
+                    widget.name = name.value;
                     updateWidget(widget);
-                }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                }} placeholder="Widget name" ref={node => name = node} className="form-control" id="name"/>
                 <h4>Preview</h4>
             </div>}
 
             {!widget.edit && widget.editing && <div>
                 <label>Widget Name</label>
                 <input onChange={() => {
-                    widget.title = title.value;
+                    widget.name = name.value;
                     updateWidget(widget);
-                }} value={widget.title} ref={node => title = node} className="form-control" id="title"/>
+                }} value={widget.name} ref={node => name = node} className="form-control" id="name"/>
                 <label>Link text</label>
                 <input ref = {node => text = node}
                        id='text'

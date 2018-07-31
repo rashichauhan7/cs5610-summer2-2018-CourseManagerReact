@@ -4,7 +4,7 @@ import ToggleButton from 'react-toggle-button'
  {
      let text;
      let size;
-     let title;
+     let name;
      let editing;
      let editText;
      let editSize;
@@ -44,9 +44,9 @@ import ToggleButton from 'react-toggle-button'
             </select>
                  <label></label>
                  <input onChange={() => {
-                     widget.title = title.value;
+                     widget.name = name.value;
                      updateWidget(widget);
-                 }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                 }} placeholder="Widget name" ref={node => name = node} className="form-control" id="name"/>
                  <h4>Preview</h4>
 
              </div>}
@@ -54,9 +54,9 @@ import ToggleButton from 'react-toggle-button'
              {!widget.edit && widget.editing && <div>
                  <div>
                      <input onChange={() => {
-                         widget.title = editTitle.value;
+                         widget.name = editTitle.value;
                          updateWidget(widget);
-                     }} value={widget.title} ref={node => editTitle = node} className="form-control" id="title"/>
+                     }} value={widget.name} ref={node => editTitle = node} className="form-control" id="name"/>
                      <label htmlFor="size">Heading Text</label>
 
                  <input onChange={() => {

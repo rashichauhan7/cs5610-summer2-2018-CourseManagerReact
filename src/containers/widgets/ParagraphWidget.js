@@ -3,7 +3,7 @@ import ToggleButton from 'react-toggle-button'
 
 const ParagraphWidget = ({toggleActive, widget, updateWidget}) => {
 let text;
-let title;
+let name;
     return (
         <div>
             <label className="float-right" style={{marginRight: 10}}>
@@ -28,18 +28,18 @@ let title;
                    }/>
                 <label></label>
                 <input onChange={() => {
-                    widget.title = title.value;
+                    widget.name = name.value;
                     updateWidget(widget);
-                }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                }} placeholder="Widget name" ref={node => name = node} className="form-control" id="name"/>
                 <h4>Preview</h4>
             </div>}
 
             {!widget.edit && widget.editing && <div>
                 <label>Widget name</label>
                 <input onChange={() => {
-                    widget.title = title.value;
+                    widget.name = name.value;
                     updateWidget(widget);
-                }} value={widget.title} ref={node => title = node} placeholder={widget.title} className="form-control" id="title"/>
+                }} value={widget.name} ref={node => name = node} placeholder={widget.name} className="form-control" id="name"/>
                 <label>Paragraph Text</label>
                 <input className="form-control" value={widget.text} id="text"
                        ref = {node => text = node}

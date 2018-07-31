@@ -5,7 +5,7 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
 {
     let text;
     let ordered;
-    let title;
+    let name;
     return (
         <div>
             <label className="float-right" style={{marginRight: 10}}>
@@ -37,17 +37,17 @@ const ListWidget = ({toggleActive, widget, updateWidget}) =>
                 </select>
                 <label></label>
                 <input onChange={() => {
-                    widget.title = title.value;
+                    widget.name = name.value;
                     updateWidget(widget);
-                }} placeholder="Widget name" ref={node => title = node} className="form-control" id="title"/>
+                }} placeholder="Widget name" ref={node => name = node} className="form-control" id="name"/>
                 <h4>Preview</h4>
         </div>}
             {!widget.edit && widget.editing && <div>
                 <label>Widget name</label>
                 <input onChange={() => {
-                    widget.title = title.value;
+                    widget.name = name.value;
                     updateWidget(widget);
-                }} value={widget.title} ref={node => title = node} className="form-control" id="title"/>
+                }} value={widget.name} ref={node => name = node} className="form-control" id="name"/>
 
                 <textarea value={widget.text} ref={node => text = node} value = {widget.listItems} className="form-control" onChange={() => {
                     widget.listItems = text.value;
