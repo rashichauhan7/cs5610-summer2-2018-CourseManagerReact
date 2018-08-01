@@ -79,6 +79,17 @@ export const widgetReducer = (state = initialState, action) =>
                 })
             }
         case 'SAVE_WIDGETS':
+            var tmpArr = [];
+            for(var w in state.widgets) {
+                if(tmpArr.indexOf(state.widgets[w].name) < 0){
+                    tmpArr.push(state.widgets[w].name);
+                } else {
+                    alert("Cannot have more than one widget with the same name : " + state.widgets[w].name);
+                    return state;
+                }
+            }
+
+
             var url = 'https://webdev-summer2-2018-1.herokuapp.com/api/topic/TID/widget';
             state.widgets.map(widget => {
                  widget.edit = false;
