@@ -5,6 +5,7 @@ import ToggleButton from 'react-toggle-button'
 const ImageWidget = ({toggleActive, widget, updateWidget, images, renderImages,setImage}) => {
     let src;
     let name;
+    let keyword;
 
     $('.image1').click(function(){
         $('#URL').val($('.image1').find('img').attr('src'));
@@ -71,7 +72,11 @@ const ImageWidget = ({toggleActive, widget, updateWidget, images, renderImages,s
                 widget.name = name.value;
                 updateWidget(widget);
             }} placeholder="Widget Name" ref={node => name = node} className="form-control" id="name"/>
-            <button className="btn" onClick={() => renderImages(widget.id)}>Get Random Images</button>
+
+                <input onChange={() => {
+
+                }} placeholder="Search for images" ref={node => keyword = node} className="form-control" id="imagesearch"/>
+            <button className="btn" onClick={() => renderImages(widget.id, keyword.value)}>Get Random Images</button>
                 {/*<div>{renderImages(widget.id)}</div>*/}
                 <div className="row">
                 <div className="image1" ></div>

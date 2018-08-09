@@ -35,8 +35,9 @@ class WidgetListComponent extends React.Component
         }
     }
 
-    renderImages(id) {
-        this.getImages().done(function (images) {
+
+        renderImages(id, keyword) {
+        this.getImages(keyword).done(function (images) {
             console.log(images);
             var i = 0;
             const self = this;
@@ -46,15 +47,13 @@ class WidgetListComponent extends React.Component
 
             });
         })
-
-
     }
-    getImages() {
+    getImages(keyword) {
         const self = this;
         let images = [];
             return $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
                 {
-                    tags: "planet",
+                    tags: keyword,
                     tagmode: "any",
                     format: "json"
                 }).done(function (data) {

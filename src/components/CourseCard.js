@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import CourseService from "../services/CourseServiceClient";
 import '../css/Courses.css'
+
 export default class CourseCard extends React.Component
 {
     constructor(props) {
