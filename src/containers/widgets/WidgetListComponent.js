@@ -43,6 +43,7 @@ class WidgetListComponent extends React.Component
             const self = this;
             var image = images.items.map((image) => {
                 let link = image['media']['m'].replace("_m", "_b");
+                $('.image'+i).empty();
                 $('.image'+i).append( "<img key=" + (++i) + " border='0' src=" +link+" width='100' height='100'/>");
 
             });
